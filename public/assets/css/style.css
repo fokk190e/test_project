@@ -1,0 +1,37 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+header{
+  height: 80px;
+}
+
+body{
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.container-product ul{
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #5eb5e0;
+  padding: 3px;
+}
+
+.container-product ul li{
+  background-color: #ffffff;
+  margin: 3px;
+  border-radius: 3px;
+  list-style-type: none;
+}
+
+.container-product ul li a{
+  color: #000000;
+  text-decoration: none;
+}
+
+.container-product ul li span{
+  width: 40%;
+}
