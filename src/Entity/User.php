@@ -52,7 +52,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @Assert\Choice({"ROLE_SUPER_ADMIN", "ROLE_ADMIN_MANAGER", "ROLE_USER"})
+     * @Assert\Choice({"ROLE_SUPER_ADMIN", "ROLE_MANAGER", "ROLE_USER"})
      *
      * @ORM\Column(name="role", type="string", length=32)
      */

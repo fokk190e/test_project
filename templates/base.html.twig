@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="theme-color" content="#ffffff"/>
+    <!-- <link href="" rel="shortcut icon" type="image/x-icon"/> -->
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+    <title>{% block title %}Avalon Library!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<header id="header">
+    {% block header %}
+        <div class="header">
+        </div>
+    {% endblock %}
+</header>
+
+{% block navigation %}{% endblock %}
+{% block body %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block javascripts %}{% endblock %}
+<script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
+</body>
 </html>
