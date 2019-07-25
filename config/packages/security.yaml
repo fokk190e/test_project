@@ -1,13 +1,49 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+            cost: 10
+
     providers:
-        in_memory: { memory: ~ }
+        my_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+
+        apiToken:
+            entity:
+                class: App\Entity\User
+                property: apiToken
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_MANAGER]
+        ROLE_MANAGER: ROLE_USER
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        api:
+            pattern: ^/api
+            anonymous: false
+            stateless: true
+            provider: apiToken
+            guard:
+                authenticators:
+                    - api_key_authenticator
         main:
             anonymous: true
+
+            form_login:
+                login_path: index
+                check_path: login
+                use_forward: false
+                provider: my_provider
+
+            logout:
+                path: logout
+                invalidate_session: false
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
