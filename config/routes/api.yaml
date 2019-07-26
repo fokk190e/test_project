@@ -1,0 +1,11 @@
+apu_product_add:
+  path: /product/add
+  methods: POST
+  controller: App\Controller\Api\ProductController::add
+
+api_product_edit:
+  path: /product/edit/{id}
+  methods: PUT
+  controller: App\Controller\Api\ProductController::edit
+  requirements:
+          page: '\d+'
