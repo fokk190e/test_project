@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products!{% endblock %}
+
+{% block body %}
+    <div class="container-product">
+        <ul>
+            <li class="header-product">
+                <div class="row">
+                    <div class="col-md-5">Product name</div>
+                    <div class="col-md-3">Category name</div>
+                    <div class="col-md-4">Action</div>
+                </div>
+            </li>
+            {% for product in products %}
+                <li>
+                        <div class="row">
+                            <div class="col-md-5">{{ product.name }}</div>
+                            <div class="col-md-3">{{ product.category.name }}</div>
+                            <div class="col-md-4"><a href="{{ path('product_add') }}">Product Edit</a></div>
+                        </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

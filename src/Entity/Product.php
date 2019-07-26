@@ -32,9 +32,9 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=256, nullable=true)
+     * @ORM\Column(name="imageFilename", type="string", length=256, nullable=true)
      */
-    private $image;
+    private $imageFilename;
 
     /**
      * @ORM\Column(name="created", type="datetime")
@@ -73,25 +73,25 @@ class Product
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * @param string $image
+     * @param string $imageFilename
      */
-    public function setImage(string $image): void
+    public function setImageFilename(string $imageFilename): void
     {
-        $this->image = $image;
+        $this->imageFilename = $imageFilename;
     }
 
     /**
      * @return string
      */
-    public function getImage(): string
+    public function getImageFilename(): ?string
     {
-        return $this->image;
+        return $this->imageFilename;
     }
 
     /**

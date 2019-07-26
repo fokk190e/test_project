@@ -1,0 +1,19 @@
+product_list:
+  path: /list
+  controller: App\Controller\ProductController::getProductList
+
+product_get:
+  path: /get/{id}
+  controller: App\Controller\ProductController::getProduct
+  requirements:
+      page: '\d+'
+
+product_add:
+  path: /add
+  controller: App\Controller\ProductController::addProduct
+
+product_edit:
+  path: /edit/{id}
+  controller: App\Controller\ProductController::editProduct
+  requirements:
+          page: '\d+'
