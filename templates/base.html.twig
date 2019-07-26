@@ -8,21 +8,31 @@
     <!-- <link href="" rel="shortcut icon" type="image/x-icon"/> -->
     <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
-    <title>{% block title %}Avalon Library!{% endblock %}</title>
+    <title>{% block title %}Project{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 <header id="header">
     {% block header %}
         <div class="header">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    {% if is_granted('ROLE_MANAGER') %}
+                        <a href="{{ path('product_add') }}"></a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     {% endblock %}
 </header>
 
-{% block navigation %}{% endblock %}
 {% block body %}{% endblock %}
 {% block footer %}{% endblock %}
-{% block javascripts %}{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
+{% block javascripts %}{% endblock %}
 </body>
 </html>

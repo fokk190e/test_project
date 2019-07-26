@@ -32,6 +32,11 @@ body{
   text-decoration: none;
 }
 
-.container-product ul li span{
-  width: 40%;
+.container-product ul li div.row div{
+  text-align: center;
+}
+
+ul li.header-product{
+  background-color: #20c997;
+  font-weight: bold;
 }
