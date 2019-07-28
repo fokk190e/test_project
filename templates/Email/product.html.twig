@@ -1,0 +1,10 @@
+<h3>New Products!</h3>
+
+<ul>
+    {% for product in products %}
+        <li>
+            <span>{{ product.name }}</span><br>
+            <span>{{ product.categoty.name }}</span>
+        </li>
+    {% endfor %}
+</ul>
