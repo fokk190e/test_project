@@ -6,15 +6,15 @@ security:
             cost: 10
 
     providers:
-        my_provider:
+        user_custom_provider:
             entity:
                 class: App\Entity\User
-                property: username
+                property: email
 
-        apiToken:
+        api_token:
             entity:
                 class: App\Entity\User
-                property: apiToken
+                property: api_token
 
     role_hierarchy:
         ROLE_SUPER_ADMIN: [ROLE_MANAGER]
@@ -28,18 +28,22 @@ security:
             pattern: ^/api
             anonymous: false
             stateless: true
-            provider: apiToken
+            provider: api_token
             guard:
                 authenticators:
                     - api_key_authenticator
         main:
             anonymous: true
+            provider: user_custom_provider
+            guard:
+                authenticators:
+                    - custom_authenticator
 
             form_login:
                 login_path: index
                 check_path: login
                 use_forward: false
-                provider: my_provider
+                provider: user_custom_provider
 
             logout:
                 path: logout

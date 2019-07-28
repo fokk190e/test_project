@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends AbstractController
 {
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function userList()
     {
         $userList = $this->getDoctrine()->getRepository(User::class)->findAll();
@@ -30,7 +33,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($this->generateUrl('user_list'));

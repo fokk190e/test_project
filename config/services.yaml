@@ -33,6 +33,10 @@ services:
         class: App\Security\TokenAuthenticator
         public: true
 
+    custom_authenticator:
+        class: App\Security\LoginFormAuthenticator
+        public: true
+
     App\Service\UploadService:
         arguments:
             $region: '%s3_region%'
