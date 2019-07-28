@@ -46,6 +46,12 @@ class Category
      */
     private $managers;
 
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+        $this->managers = new ArrayCollection();
+    }
+
     /**
      * @return int
      */
@@ -75,7 +81,9 @@ class Category
      */
     public function addProduct(Product $product): void
     {
-        $this->products[] = $product;
+        if (!$this->getProducts()->contains($product)) {
+            $this->products->add($product);
+        }
     }
 
     /**
@@ -84,5 +92,23 @@ class Category
     public function getProducts()
     {
         return $this->products;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function addManager(User $user): void
+    {
+        if (!$this->getManagers()->contains($user)) {
+            $this->managers->add($user);
+        }
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getManagers(): ArrayCollection
+    {
+        return $this->managers;
     }
 }

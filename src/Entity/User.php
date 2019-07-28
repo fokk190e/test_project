@@ -74,7 +74,12 @@ class User implements UserInterface, \Serializable
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="managers")
      */
-    private $allowedCategories;
+    private $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -169,6 +174,24 @@ class User implements UserInterface, \Serializable
     {
         $this->role = $role;
         return $this;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function addCategory(Category $category): void
+    {
+        if (!$this->getCategories()->contains($category)) {
+            $this->categories->add($category);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 
     /**

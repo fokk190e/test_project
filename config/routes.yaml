@@ -5,6 +5,10 @@ product:
   resource: './routes/product.yaml'
   prefix: /product
 
+user:
+  resource: './routes/user.yaml'
+  prefix: /user
+
 api:
   resource: './routes/api.yaml'
   prefix: /api

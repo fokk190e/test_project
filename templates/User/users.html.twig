@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <div class="container-product">
+        <div class="row">
+            <div class="col-md-6 offset-3">
+                <ul>
+                    <li class="header-product">
+                        <div class="row">
+                            <div class="col-md-6">User name</div>
+                            <div class="col-md-3">User email</div>
+                            <div class="col-md-3">User Role</div>
+                        </div>
+                    </li>
+                    {% for user in users %}
+                        <li>
+                            <a href="{{ path('user_edit', {'id': user.id}) }}">
+                                <div class="row">
+                                    <div class="col-md-4">{{ user.username }}</div>
+                                    <div class="col-md-3">{{ user.email }}</div>
+                                    <div class="col-md-2">{{ user.role }}</div>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        <script src="{{ asset('/assets/js/script.js') }}"></script>
+    {% endblock %}
+
+{% endblock %}

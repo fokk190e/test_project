@@ -1,0 +1,9 @@
+user_list:
+  path: /list
+  controller: App\Controller\UserController::userList
+
+user_edit:
+  path: /edit/{id}
+  controller: App\Controller\UserController::editUser
+  requirements:
+          page: '\d+'
