@@ -47,7 +47,7 @@ class Product
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -55,7 +55,7 @@ class Product
     /**
      * @param string $name
      */
-    public function setName(string $name): void
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -63,7 +63,7 @@ class Product
     /**
      * @return string
      */
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
@@ -71,7 +71,7 @@ class Product
     /**
      * @param string $imageFilename
      */
-    public function setImageFilename(string $imageFilename): void
+    public function setImageFilename(string $imageFilename)
     {
         $this->imageFilename = $imageFilename;
     }
@@ -79,31 +79,15 @@ class Product
     /**
      * @return string
      */
-    public function getImageFilename(): ?string
+    public function getImageFilename()
     {
         return $this->imageFilename;
     }
 
     /**
-     * @return mixed
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
-
-    /**
      * @param mixed $category
      */
-    public function setCategory($category): void
+    public function setCategory($category)
     {
         $this->category = $category;
     }

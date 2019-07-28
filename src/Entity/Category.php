@@ -63,7 +63,7 @@ class Category
     /**
      * @param string $name
      */
-    public function setName(string $name): void
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -71,7 +71,7 @@ class Category
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -79,7 +79,7 @@ class Category
     /**
      * @param Product $product
      */
-    public function addProduct(Product $product): void
+    public function addProduct(Product $product)
     {
         if (!$this->getProducts()->contains($product)) {
             $this->products->add($product);
@@ -97,7 +97,7 @@ class Category
     /**
      * @param User $user
      */
-    public function addManager(User $user): void
+    public function addManager(User $user)
     {
         if (!$this->getManagers()->contains($user)) {
             $this->managers->add($user);
@@ -107,7 +107,7 @@ class Category
     /**
      * @return ArrayCollection
      */
-    public function getManagers(): ArrayCollection
+    public function getManagers()
     {
         return $this->managers;
     }

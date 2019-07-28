@@ -84,7 +84,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -103,7 +103,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -122,7 +122,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -141,7 +141,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -160,7 +160,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getApiToken(): string
+    public function getApiToken()
     {
         return $this->apiToken;
     }
@@ -179,7 +179,7 @@ class User implements UserInterface, \Serializable
     /**
      * @param Category $category
      */
-    public function addCategory(Category $category): void
+    public function addCategory(Category $category)
     {
         if (!$this->getCategories()->contains($category)) {
             $this->categories->add($category);
@@ -197,7 +197,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return string
      */
-    public function getRole(): string
+    public function getRole()
     {
         return $this->role;
     }
