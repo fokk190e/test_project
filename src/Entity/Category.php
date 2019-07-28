@@ -4,28 +4,31 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 
 /**
  * Entity Category
  *
- * @ORM\Table(name="category")
+ * @ORM\Table
  * @ORM\Entity
  */
 class Category
 {
+    use Timestampable;
+
     /**
      * @var integer
      *
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(name="id", type="integer", unique=true, options={"unsigned"=true})
+     * @ORM\Column(type="integer", unique=true, options={"unsigned"=true})
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=256, nullable=true)
+     * @ORM\Column(type="string", length=256, nullable=true)
      */
     private $name;
 
@@ -35,6 +38,13 @@ class Category
      * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="category", cascade={"persist", "remove"} )
      */
     private $products;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", mappedBy="allowedCategories")
+     */
+    private $managers;
 
     /**
      * @return int

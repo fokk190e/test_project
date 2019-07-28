@@ -2,21 +2,24 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Entity User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table
  * @ORM\Entity
  * @UniqueEntity("email")
  */
 class User implements UserInterface, \Serializable
 {
+    use Timestampable;
+
     /**
      * @var integer
      *
@@ -29,14 +32,14 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=256)
+     * @ORM\Column(type="string", length=256)
      */
     private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=128)
+     * @ORM\Column(type="string", length=128)
      */
     private $password;
 
@@ -45,7 +48,7 @@ class User implements UserInterface, \Serializable
      *
      * @Assert\Regex("/^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/")
      *
-     * @ORM\Column(name="email", type="string", length=128)
+     * @ORM\Column(type="string", length=128)
      */
     private $email;
 
@@ -54,28 +57,24 @@ class User implements UserInterface, \Serializable
      *
      * @Assert\Choice({"ROLE_SUPER_ADMIN", "ROLE_MANAGER", "ROLE_USER"})
      *
-     * @ORM\Column(name="role", type="string", length=32)
+     * @ORM\Column(type="string", length=32)
      */
     private $role;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="apiToken", type="string", length=256, nullable=true)
+     * @ORM\Column(type="string", length=256, nullable=true)
      */
     private $apiToken;
 
     /**
-     * @ORM\Column(name="created", type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="create")
+     *
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="managers")
      */
-    private $created;
-
-    /**
-     * @ORM\Column(name="updated", type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $updated;
+    private $allowedCategories;
 
     /**
      * @return int
@@ -87,10 +86,13 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param string $username
+     *
+     * @return $this
      */
-    public function setUsername(string $username): void
+    public function setUsername(string $username)
     {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -103,10 +105,13 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param string $email
+     *
+     * @return $this
      */
-    public function setEmail(string $email): void
+    public function setEmail(string $email)
     {
         $this->email = $email;
+        return $this;
     }
 
     /**
@@ -119,10 +124,13 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param string $password
+     *
+     * @return $this
      */
-    public function setPassword(string $password): void
+    public function setPassword(string $password)
     {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -135,10 +143,13 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param string $apiToken
+     *
+     * @return $this
      */
-    public function setApiToken(string $apiToken): void
+    public function setApiToken(string $apiToken)
     {
         $this->apiToken = $apiToken;
+        return $this;
     }
 
     /**
@@ -151,10 +162,13 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param string $role
+     *
+     * @return $this
      */
-    public function setRole(string $role): void
+    public function setRole(string $role)
     {
         $this->role = $role;
+        return $this;
     }
 
     /**
@@ -165,31 +179,20 @@ class User implements UserInterface, \Serializable
         return $this->role;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
-
     public function getRoles(): array
     {
         return [$this->role];
     }
 
     public function eraseCredentials()
-    {}
+    {
+        // @todo
+    }
 
-    public function getSalt(){}
+    public function getSalt()
+    {
+        // @todo
+    }
 
     public function serialize()
     {
