@@ -9,7 +9,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
  * Entity Product
  *
  * @ORM\Table
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
 class Product
 {
