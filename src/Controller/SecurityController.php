@@ -31,12 +31,4 @@ class SecurityController extends AbstractController
             ]
         );
     }
-
-    /**
-     * @throws \Exception
-     */
-    public function logout()
-    {
-        throw new \Exception('Error');
-    }
 }
