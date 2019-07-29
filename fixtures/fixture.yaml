@@ -1,3 +1,6 @@
+parameters:
+    hash: $2y$10$9Pnlldo2GMSD0mQiEr8bb.ieEqnm40bR4izPwTtSVK/JH1m6z/6Vy
+
 App\Entity\Category:
     category1:
         name: <name()>
@@ -26,5 +29,5 @@ App\Entity\User:
         username: <name()>
         role: 'ROLE_MANAGER'
         email: <email()>
-        setPassword: '12345'
+        setPassword: <{hash}>
         addCategory: '@category1'
