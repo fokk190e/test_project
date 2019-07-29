@@ -22,4 +22,14 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getProductsAllowCategories($categoriesId)
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->andWhere('c.id IN (:categoriesId)')
+            ->setParameter('categoriesId', $categoriesId)
+            ->getQuery()
+            ->getResult();
+    }
 }

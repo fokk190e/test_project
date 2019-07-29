@@ -22,13 +22,14 @@ class ProductController extends AbstractController
 
         if ($user->getRole() == 'ROLE_MANAGER') {
             $categories  = $user->getCategories();
-            $productList = [];
+            $categoriesId = [];
 
             if (count($categories)) {
                 foreach ($categories as $category) {
-                    $products = $this->getDoctrine()->getRepository(Product::class)->findBy(['category' => $category]);
-                    $productList = array_merge($productList, $products);
+                    $categoriesId[] = $category->getId();
                 }
+
+                $productList = $this->getDoctrine()->getRepository(Product::class)->getProductsAllowCategories($categoriesId);
             }
 
         } else {
