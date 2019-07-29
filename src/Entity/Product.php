@@ -54,10 +54,13 @@ class Product
 
     /**
      * @param string $name
+     *
+     * @return $this
      */
     public function setName(string $name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -70,10 +73,13 @@ class Product
 
     /**
      * @param string $imageFilename
+     *
+     * @return $this
      */
     public function setImageFilename(string $imageFilename)
     {
         $this->imageFilename = $imageFilename;
+        return $this;
     }
 
     /**
@@ -85,11 +91,14 @@ class Product
     }
 
     /**
-     * @param mixed $category
+     * @param $category
+     *
+     * @return $this
      */
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
 
     /**

@@ -4,6 +4,9 @@
 
 {% block body %}
     <div class="container-product">
+        {% if is_granted('ROLE_MANAGER') %}
+            <a href="{{ path('product_add') }}">Product Add</a>
+        {% endif %}
         <ul>
             <li class="header-product">
                 <div class="row">
@@ -17,7 +20,7 @@
                         <div class="row">
                             <div class="col-md-5">{{ product.name }}</div>
                             <div class="col-md-3">{{ product.category.name }}</div>
-                            <div class="col-md-4"><a href="{{ path('product_add') }}">Product Edit</a></div>
+                            <div class="col-md-4">{% if is_granted('ROLE_MANAGER') %} <a href="{{ path('product_edit', {'id': user.id}) }}">Product Edit</a> {% endif %}</div>
                         </div>
                 </li>
             {% endfor %}

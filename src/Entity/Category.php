@@ -62,10 +62,13 @@ class Category
 
     /**
      * @param string $name
+     *
+     * @return $this
      */
     public function setName(string $name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -78,12 +81,16 @@ class Category
 
     /**
      * @param Product $product
+     *
+     * @return $this
      */
     public function addProduct(Product $product)
     {
         if (!$this->getProducts()->contains($product)) {
             $this->products->add($product);
         }
+
+        return $this;
     }
 
     /**
@@ -96,12 +103,16 @@ class Category
 
     /**
      * @param User $user
+     *
+     * @return $this
      */
     public function addManager(User $user)
     {
         if (!$this->getManagers()->contains($user)) {
             $this->managers->add($user);
         }
+
+        return $this;
     }
 
     /**

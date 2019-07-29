@@ -178,12 +178,16 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param Category $category
+     *
+     * @return $this
      */
     public function addCategory(Category $category)
     {
         if (!$this->getCategories()->contains($category)) {
             $this->categories->add($category);
         }
+
+        return $this;
     }
 
     /**
