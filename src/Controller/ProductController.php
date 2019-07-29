@@ -72,7 +72,7 @@ class ProductController extends AbstractController
             $this->getDoctrine()->getManager()->persist($product);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirect($this->generateUrl('product_list'));
+            return $this->redirectToRoute('product_list');
         }
 
         return $this->render('Product/product.html.twig', [
@@ -81,7 +81,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * @param Request redirectToRoute
      * @param Product $product
      * @param UploadService $uploadService
      *
@@ -105,7 +105,7 @@ class ProductController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirect($this->generateUrl('product_list'));
+            return $this->redirectToRoute('product_list');
         }
 
         return $this->render('Product/product.html.twig', [
