@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\User;
 use App\Form\ProductType;
 use App\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,9 +17,26 @@ class ProductController extends AbstractController
      */
     public function getProductList()
     {
-        $productList = $this->getDoctrine()->getRepository(Product::class)->findAll();
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($user->getRole() == 'ROLE_MANAGER') {
+            $categories  = $user->getCategories();
+            $productList = [];
+
+            if (count($categories)) {
+                foreach ($categories as $category) {
+                    $products = $this->getDoctrine()->getRepository(Product::class)->findBy(['category' => $category]);
+                    $productList = array_merge($productList, $products);
+                }
+            }
+
+        } else {
+            $productList = $this->getDoctrine()->getRepository(Product::class)->findAll();
+        }
 
         return $this->render('Product/products.html.twig', [
+            'user' => $user,
             'products' => $productList
         ]);
     }

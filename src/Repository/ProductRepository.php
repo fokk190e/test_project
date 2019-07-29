@@ -15,17 +15,11 @@ class ProductRepository extends ServiceEntityRepository
 
     public function getLastDayProduct()
     {
-        $date = date('Y-m-d h:i:s', strtotime("-1 day"));
-
-        $query = $this->
-        getEntityManager()->
-        createQuery('SELECT p 
-                          FROM App\Entity\Product p 
-                          WHERE p.createdAt BETWEEN :oneday AND :today
-                          ');
-        $query->setParameter('oneday', $date);
-        $query->setParameter('today', date('Y-m-d h:i:s'));
-
-        return $query->execute();
+        return $this->createQueryBuilder('p')
+            ->where('p.createdAt BETWEEN :yesterday AND :today')
+            ->setParameter('yesterday', new \DateTime('-1 day'))
+            ->setParameter('today', new \DateTime())
+            ->getQuery()
+            ->getResult();
     }
 }
