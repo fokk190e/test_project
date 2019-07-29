@@ -34,16 +34,14 @@ security:
                     - api_key_authenticator
         main:
             anonymous: true
-            provider: user_custom_provider
-            guard:
-                authenticators:
-                    - custom_authenticator
 
             form_login:
-                login_path: index
-                check_path: login
-                use_forward: false
                 provider: user_custom_provider
+                login_path: login
+                check_path: login_check
+                username_parameter: email
+                password_parameter: password
+                default_target_path: product_list
 
             logout:
                 path: logout
