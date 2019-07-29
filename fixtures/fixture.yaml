@@ -1,0 +1,30 @@
+App\Entity\Category:
+    category1:
+        name: <name()>
+
+    category2:
+        name: <name()>
+
+App\Entity\Product:
+    product1:
+        name: <name()>
+        imageFilename: <md5()>
+        category: '@category1'
+
+    product2:
+        name: <name()>
+        imageFilename: <md5()>
+        category: '@category1'
+
+    product3:
+        name: <name()>
+        imageFilename: <md5()>
+        category: '@category2'
+
+App\Entity\User:
+    user1:
+        username: <name()>
+        role: 'ROLE_MANAGER'
+        email: <email()>
+        setPassword: '12345'
+        addCategory: '@category1'
