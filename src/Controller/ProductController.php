@@ -64,7 +64,6 @@ class ProductController extends AbstractController
             /** @var UploadedFile $file */
             $file = $form['imageFilename']->getData();
 
-
             if ($file) {
                 $newFilename = $uploadService->uploadFile($file);
                 $product->setImageFilename($newFilename);

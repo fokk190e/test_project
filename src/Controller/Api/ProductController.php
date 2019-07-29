@@ -72,7 +72,7 @@ class ProductController extends AbstractController
         $this->getDoctrine()->getManager()->persist($product);
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->json('Successfully.', 200);
+        return $this->json('Successfully.');
     }
 
     /**
@@ -135,6 +135,6 @@ class ProductController extends AbstractController
 
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->json('Successfully.', 200);
+        return $this->json('Successfully.');
     }
 }
